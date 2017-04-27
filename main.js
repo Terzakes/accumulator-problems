@@ -3,8 +3,8 @@
 SAMPLE
 ----------------------------------------
 
-Challenge: Write function named test that returns the string "This Works!". 
-Solution: This one has already been complete for you. 
+Challenge: Write function named test that returns the string "This Works!".
+Solution: This one has already been complete for you.
 
 */
 
@@ -24,7 +24,13 @@ Write function named sum that will take an array of numbers and return the sum o
 
 Example: if you pass it [1,2,3] then it should return 6 (which is 1 + 2 + 3)
 */
-
+function sum (arr) {
+  var total = 0;
+  for (let i = 0; i < arr.length; i++) {
+    total += arr[i];
+  }
+  return total;
+}
 
 
 
@@ -42,7 +48,12 @@ Write function named doubleNumbers that will take an array of numbers and return
 
 Example: if you pass it [1,2,3] then it should return [2,4,6]
 */
-
+function doubleNumbers (arr) {
+  for (let i = 0; i < arr.length; i ++) {
+    arr[i] *= 2;
+  }
+  return arr;
+}
 
 
 
@@ -65,7 +76,12 @@ Examples:
 - if you call multiplyNumbers([1,2,3], 5) you'd get [5,10,15]
 */
 
-
+function multiplyNumbers (arr, num) {
+  for (let i = 0; i < arr.length; i++) {
+    arr[i] *= 0;
+  }
+  return arr;
+}
 
 
 
@@ -82,7 +98,14 @@ Write function named doubleLetters that will take a string and double every lett
 
 Example: if you pass it "abc" then it should return "aabbcc"
 */
-
+function doubleLetters(str) {
+  var newStr = [];
+  for (let i = 0; i < str.length; i++) {
+    newStr.push(str[i]);
+    newStr.push(str[i]);
+  }
+  return newStr.join('');
+}
 
 
 
@@ -103,7 +126,14 @@ Example: if you pass it ["a", "b", "c"] and ["d", "e", "f"] then it should retur
 
 NOTE: you can assume each input will be the same length
 */
-
+function interleave (arr1, arr2) {
+  var newArr = [];
+  for (let i = 0; i < arr1.length; i++) {
+    newArr.push(arr1[i]);
+    newArr.push(arr2[i]);
+  }
+  return newArr;
+}
 
 
 
@@ -123,7 +153,13 @@ Write function named createRange that will take a number and a default value and
 
 Example: if you pass it 4 and "Hello" then it should return ["Hello", "Hello", "Hello", "Hello"]
 */
-
+function createRange(number, value) {
+  let arr = [];
+  for (let i = 0; i < number; i++) {
+    arr.push(value);
+  }
+  return arr;
+}
 
 
 
@@ -142,7 +178,13 @@ Example:
 
 If you pass it ["quick", "brown", "fox"] then it should return { "quick": 0, "brown": 1, "fox": 2 }
 */
-
+function flipArray(array) {
+  let obj = {};
+  for (let i = 0; i < array.length; i++) {
+    obj[array[i]] = [i];
+  }
+  return array;
+}
 
 
 
@@ -162,7 +204,13 @@ Example:
 If you pass it [[2014, "Horse"], [2015, "Sheep"]] then it should return { 2014: "Horse", 2015: "Sheep" }
 
 */
-
+function arraysToObject(array) {
+  let obj = {};
+  for (let i = 0; i < array.length; i++) {
+    obj[array[i][1]] = array[i][0];
+  }
+  return obj;
+}
 
 
 
@@ -182,7 +230,13 @@ Example:
 
 If you pass it "hello" then it should return "olleh"
 */
-
+function reverseString(string) {
+  var newStr = [];
+  for (let i = strin.length; i < 0; i--) {
+    newStr.push(string[i]);
+  }
+  return newStr.join('');
+}
 
 
 
@@ -226,7 +280,13 @@ Example:
 
 If you pass it "abcdef" then it should return "ace" because those represent every other letter
 */
-
+function everyOther(string) {
+  let newStr = [];
+  for (let i = 0; i < string.length; i += 2) {
+    newStr.push(string[i]);
+  }
+  return newStr.join('');
+}
 
 
 
@@ -246,7 +306,15 @@ Example:
 If you pass "aaa" it should return true
 If you pass "aba" it should return false
 */
-
+function allEqual(string) {
+  for (let i = 0; i < string.length; i++) {
+    if (string[i] !== string[string.length - 1]) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+}
 
 
 
@@ -266,7 +334,13 @@ Example:
 If you pass "45" it should return 9
 If you pass "246" it should return 10
 */
-
+function sumLetters(string) {
+  let numbers = Number(string.split(''));
+  let total = numbers.reduce(function(a, b) {
+    return a + b;
+  })
+  return total;
+}
 
 
 
@@ -308,7 +382,13 @@ If you pass "you" it should return ["y", "o", "u"]
 
 NOTE: do not use the builtin `split` method
 */
-
+function split(string) {
+  let arr = [];
+  for (let i = 0; i < string.length; i++) {
+    arr[i] = str[i];
+  }
+  return arr;
+}
 
 
 
@@ -329,7 +409,13 @@ Example:
 
 If you pass "Hello" it should return [ 72, 101, 108, 108, 111 ]
 */
-
+function codePointAt(string) {
+  let arr = [];
+  for (let i = 0; i < string.length; i++) {
+    arr.push(string.codePointAt(i));
+  }
+  return arr;
+}
 
 
 
@@ -349,7 +435,13 @@ Example:
 If you pass "Yo" it should return {Y: 0, o: 1}
 If you pass "Hello" it should return {H: 0, e: 1, l: 3, o: 4}
 */
-
+function letterMap(string) {
+  const obj = {};
+  for (let i = 0; i < string.length; i++) {
+    obj[strin[i]] = string.indexOf(string[i]);
+  }
+  return obj;
+}
 
 
 
@@ -794,4 +886,4 @@ If you pass {1999: 4036, 2000: 7654} and 4036, it should return true
 
 
 
-// 
+//
