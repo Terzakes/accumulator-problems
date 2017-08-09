@@ -5,14 +5,11 @@ SAMPLE
 
 Challenge: Write function named test that returns the string "This Works!".
 Solution: This one has already been complete for you.
-
 */
 
 function test() {
- var string ="This Works!";
- return string;
+ return "This Works!";
 }
-
 
 
 /*
@@ -24,19 +21,10 @@ Write function named sum that will take an array of numbers and return the sum o
 
 Example: if you pass it [1,2,3] then it should return 6 (which is 1 + 2 + 3)
 */
+
 function sum (arr) {
-  var total = 0;
-  for (let i = 0; i < arr.length; i++) {
-    total += arr[i];
-  }
-  return total;
+  return arr.length ? arr.reduce((a, b) => a + b) : 0;
 }
-
-
-
-
-
-
 
 
 /*
@@ -48,18 +36,10 @@ Write function named doubleNumbers that will take an array of numbers and return
 
 Example: if you pass it [1,2,3] then it should return [2,4,6]
 */
+
 function doubleNumbers (arr) {
-  for (let i = 0; i < arr.length; i ++) {
-    arr[i] *= 2;
-  }
-  return arr;
+  return arr.map(e => e * 2);
 }
-
-
-
-
-
-
 
 
 /*
@@ -77,16 +57,8 @@ Examples:
 */
 
 function multiplyNumbers (arr, num) {
-  for (let i = 0; i < arr.length; i++) {
-    arr[i] *= 0;
-  }
-  return arr;
+  return arr.map(e => e * num);
 }
-
-
-
-
-
 
 
 /*
@@ -98,6 +70,7 @@ Write function named doubleLetters that will take a string and double every lett
 
 Example: if you pass it "abc" then it should return "aabbcc"
 */
+
 function doubleLetters(str) {
   var newStr = [];
   for (let i = 0; i < str.length; i++) {
@@ -106,13 +79,6 @@ function doubleLetters(str) {
   }
   return newStr.join('');
 }
-
-
-
-
-
-
-
 
 
 /*
@@ -126,6 +92,7 @@ Example: if you pass it ["a", "b", "c"] and ["d", "e", "f"] then it should retur
 
 NOTE: you can assume each input will be the same length
 */
+
 function interleave (arr1, arr2) {
   var newArr = [];
   for (let i = 0; i < arr1.length; i++) {
@@ -134,14 +101,6 @@ function interleave (arr1, arr2) {
   }
   return newArr;
 }
-
-
-
-
-
-
-
-
 
 
 /*
@@ -153,6 +112,7 @@ Write function named createRange that will take a number and a default value and
 
 Example: if you pass it 4 and "Hello" then it should return ["Hello", "Hello", "Hello", "Hello"]
 */
+
 function createRange(number, value) {
   let arr = [];
   for (let i = 0; i < number; i++) {
@@ -160,11 +120,6 @@ function createRange(number, value) {
   }
   return arr;
 }
-
-
-
-
-
 
 
 /*
@@ -178,18 +133,12 @@ Example:
 
 If you pass it ["quick", "brown", "fox"] then it should return { "quick": 0, "brown": 1, "fox": 2 }
 */
+
 function flipArray(array) {
-  let obj = {};
-  for (let i = 0; i < array.length; i++) {
-    obj[array[i]] = [i];
-  }
-  return array;
+  const obj = {};
+  array.map((e, i) => obj[e] = i);
+  return obj;
 }
-
-
-
-
-
 
 
 /*
@@ -204,19 +153,12 @@ Example:
 If you pass it [[2014, "Horse"], [2015, "Sheep"]] then it should return { 2014: "Horse", 2015: "Sheep" }
 
 */
+
 function arraysToObject(array) {
-  let obj = {};
-  for (let i = 0; i < array.length; i++) {
-    obj[array[i][1]] = array[i][0];
-  }
+  const obj = {};
+  array.map(e => obj[e[0]] = e[1]);
   return obj;
 }
-
-
-
-
-
-
 
 
 /*
@@ -230,22 +172,18 @@ Example:
 
 If you pass it "hello" then it should return "olleh"
 */
+
+// function reverseString(string) {
+//   return string.split('').reverse().join('');
+// }
+
 function reverseString(string) {
-  var newStr = [];
-  for (let i = strin.length; i < 0; i--) {
-    newStr.push(string[i]);
+  const arr = [];
+  for (let i = string.length; i > -1; i--) {
+    arr.push(string[i]);
   }
-  return newStr.join('');
+  return arr.join('');
 }
-
-
-
-
-
-
-
-
-
 
 
 /*
@@ -262,11 +200,17 @@ If you pass it "yay" then it should return false because it's odd
 If you pass it "heehaw" then it should return false because "hee" doesn't equal "haw"
 */
 
-
-
-
-
-
+function repeats(string) {
+  if (!string.length) {
+    return true;
+  } else if (string.length % 2 === 0) {
+    const str1 = string.substring(0, string.length / 2);
+    const str2 = string.substring(string.length / 2);
+    return str1 === str2;
+  } else {
+    return false;
+  }
+}
 
 
 /*
@@ -280,6 +224,7 @@ Example:
 
 If you pass it "abcdef" then it should return "ace" because those represent every other letter
 */
+
 function everyOther(string) {
   let newStr = [];
   for (let i = 0; i < string.length; i += 2) {
@@ -287,11 +232,6 @@ function everyOther(string) {
   }
   return newStr.join('');
 }
-
-
-
-
-
 
 
 /*
@@ -307,19 +247,18 @@ If you pass "aaa" it should return true
 If you pass "aba" it should return false
 */
 function allEqual(string) {
-  for (let i = 0; i < string.length; i++) {
-    if (string[i] !== string[string.length - 1]) {
-      return false;
-    } else {
-      return true;
+  if (string.length) {
+    for (let i = 0; i < string.length; i++) {
+      if (string[i] !== string[string.length - 1]) {
+        return false;
+      } else {
+        return true;
+      }
     }
+  } else {
+    return true;
   }
 }
-
-
-
-
-
 
 
 /*
@@ -335,17 +274,8 @@ If you pass "45" it should return 9
 If you pass "246" it should return 10
 */
 function sumLetters(string) {
-  let numbers = Number(string.split(''));
-  let total = numbers.reduce(function(a, b) {
-    return a + b;
-  })
-  return total;
+  return string.length ? string.split('').map(e => Number(e)).reduce((a, b) => a + b) : 0;
 }
-
-
-
-
-
 
 
 /*
@@ -360,13 +290,9 @@ Example:
 If you pass "you" it should return 2
 */
 
-
-
-
-
-
-
-
+function countVowels(string) {
+  return string.length ? string.match(/[AaEeIiOoUu]/g).length : 0;
+}
 
 
 /*
@@ -382,18 +308,14 @@ If you pass "you" it should return ["y", "o", "u"]
 
 NOTE: do not use the builtin `split` method
 */
+
 function split(string) {
   let arr = [];
   for (let i = 0; i < string.length; i++) {
-    arr[i] = str[i];
+    arr[i] = string[i];
   }
   return arr;
 }
-
-
-
-
-
 
 
 /*
@@ -409,18 +331,10 @@ Example:
 
 If you pass "Hello" it should return [ 72, 101, 108, 108, 111 ]
 */
-function codePointAt(string) {
-  let arr = [];
-  for (let i = 0; i < string.length; i++) {
-    arr.push(string.codePointAt(i));
-  }
-  return arr;
+
+function getCodePoints(string) {
+  return string.split('').map(e => e.codePointAt(0));
 }
-
-
-
-
-
 
 
 /*
@@ -435,18 +349,12 @@ Example:
 If you pass "Yo" it should return {Y: 0, o: 1}
 If you pass "Hello" it should return {H: 0, e: 1, l: 3, o: 4}
 */
+
 function letterMap(string) {
   const obj = {};
-  for (let i = 0; i < string.length; i++) {
-    obj[strin[i]] = string.indexOf(string[i]);
-  }
+  string.split('').map((e, i) => obj[e] = i);
   return obj;
 }
-
-
-
-
-
 
 
 /*
@@ -462,12 +370,11 @@ If you pass "Yo" it should return {Y: 1, o: 1}
 If you pass "Hello" it should return {"H": 1, "e": 1, "l": 2, "o": 1}
 */
 
-
-
-
-
-
-
+function letterCount(string) {
+  const obj = {};
+  string.split('').map(e => obj[e] = obj[e] + 1 || 1);
+  return obj;
+}
 
 
 /*
@@ -483,13 +390,17 @@ If you pass 0,2 it should return false because the only number between 0 and 2 i
 If you pass 0,6 it should return true because between 0 and six (the numbers 1,2,3,4,5) there are three odds - 1, 3 and 5
 */
 
-
-
-
-
-
-
-
+function threeOdds(num1, num2) {
+  let count = 0;
+  for (let i = num1; i < num2 + 1; i++) {
+    if (count === 3) {
+      return true;
+    } else if (i % 2 !== 0) {
+      count++;
+    }
+  }
+  return false;
+}
 
 
 /*
@@ -504,11 +415,18 @@ Example:
 If you pass "a", 3, "*" it should return "**a" - that is, a string of length 3, padded on the left by the "*" character
 */
 
-
-
-
-
-
+function leftPad(string, padNum, delimiter, i = padNum) {
+  if (!padNum) {
+    return string;
+  } else {
+    if (i <= string.length) {
+      return string;
+    } else {
+      string = delimiter + string;
+      return leftPad(string, --padNum, delimiter, i);
+    }
+  }
+}
 
 
 /*
@@ -524,11 +442,13 @@ If you pass "a", 3 it should return "aaa"
 If you pass "b", 3 it should return "bb"
 */
 
-
-
-
-
-
+function createString(number, letter) {
+  const arr = [];
+  for (let i = 0; i < number; i++) {
+    arr.push(letter);
+  }
+  return arr.join('');
+}
 
 
 /*
@@ -546,11 +466,9 @@ If you pass 4 it should return 24 since that's 4 * 3 * 2 * 1
 If you pass 5 it should return 120 since that's 5 * 4 * 3 * 2 * 1
 */
 
-
-
-
-
-
+function factorial(number) {
+  return !number ? 1 : number * factorial(number - 1);
+}
 
 
 /*
@@ -566,11 +484,16 @@ If you pass 1 it should return [1]
 If you pass 3 it should return [1,2,3]
 */
 
-
-
-
-
-
+function arrayOfNumbers(number) {
+  if (number === 0) {
+    return [];
+  }
+  const arr = [];
+  for (let i = 1; i < number + 1; i++) {
+    arr.push(i);
+  }
+  return arr;
+}
 
 
 /*
@@ -585,12 +508,16 @@ Example:
 If you pass 1,4 it should return {"1": "odd", "2": "even", "3": "odd", "4": "even"}
 */
 
-
-
-
-
-
-
+function evenOdd(number1, number2) {
+  if (number1 === 0 && number2 === 0) {
+    return {};
+  }
+  const obj = {};
+  for (let i = number1; i < number2 + 1; i++) {
+    obj[i] = i % 2 === 0 ? 'even' : 'odd';
+  }
+  return obj;
+}
 
 
 /*
@@ -605,13 +532,17 @@ Example:
 If you pass 2,"d" it should return {"d": true, "dd": true}
 */
 
-
-
-
-
-
-
-
+function growingKeys(number, letter) {
+  const obj = {};
+  for (let i = 1; i < number + 1; i++) {
+    let str = '';
+    for (let j = 0; j < i; j++) {
+      str += letter;
+    }
+    obj[str] = true;
+  }
+  return obj;
+}
 
 
 /*
@@ -627,11 +558,9 @@ If you pass [1,1], 1 it should return true
 If you pass [1,2], 1 it should return false
 */
 
-
-
-
-
-
+function every(array, num) {
+  return !array.length ? true : (array[0] === num ? every(array.slice(1), num) : false);
+}
 
 
 /*
@@ -647,11 +576,17 @@ If you pass [1,2], 1 it should return true
 If you pass [3,2], 1 it should return false
 */
 
-
-
-
-
-
+function some(array, num) {
+  if (!array.length) {
+    return false;
+  } else {
+    if (array[0] === num) {
+      return true;
+    } else {
+      return some(array.slice(1), num);
+    }
+  }
+}
 
 
 /*
@@ -659,7 +594,7 @@ If you pass [3,2], 1 it should return false
 CHALLENGE
 ----------------------------------------
 
-Write a function named some that takes an array and returns a string with the elements joined by commas, with a trailing 'and'
+Write a function named toSentence that takes an array and returns a string with the elements joined by commas, with a trailing 'and'
 
 Example:
 
@@ -667,16 +602,22 @@ If you pass ["Sue", "Will"] it should return "Sue and Will"
 If you pass ["Sue", "Will", "Rachel"] it should return "Sue, Will and Rachel"
 */
 
-
-
-
-
-
-
-
-
-
-
+function toSentence(array, str = '') {
+  if (!array.length) {
+    return str;
+  } else {
+    if (array.length > 2) {
+      str += array[0] + ', ';
+      return toSentence(array.slice(1), str);
+    } else if (array.length > 1) {
+      str += array[0];
+      return toSentence(array.slice(1), str);
+    } else {
+      str += ' and ' + array[0];
+      return toSentence(array.slice(1), str);
+    }
+  }
+}
 
 
 /*
@@ -692,11 +633,9 @@ If you pass ["Sue", "Will"] it should return "SW"
 If you pass ["Java", Script", "Object", "Notation"] it should return "JSON"
 */
 
-
-
-
-
-
+function acronym(array) {
+  return array.map(e => e[0]).join('');
+}
 
 
 /*
@@ -711,14 +650,16 @@ Example:
 If you pass [0,-3,2,5] it should return -3
 */
 
-
-
-
-
-
-
-
-
+function min(array, a = undefined) {
+  if (!array.length) {
+    return a;
+  } else {
+    if (array[0] < a || !a) {
+      a = array[0];
+    }
+    return min(array.slice(1), a);
+  }
+}
 
 
 /*
@@ -734,11 +675,11 @@ If you pass [{id: 1, name: "Joe"}, {id: 2, name: "Sue"}] it should return {1: {i
 
 */
 
-
-
-
-
-
+function index(array, prop) {
+  const obj = {};
+  array.map((e, i, a) => obj[e[prop]] = a[i]);
+  return obj;
+}
 
 
 /*
@@ -753,11 +694,11 @@ Example:
 If you pass {id: 1, name: "Joe"} it should return {1: "id", Joe: "name"}
 */
 
-
-
-
-
-
+function invert(obj) {
+  const newObj = {};
+  Object.entries(obj).map(e => newObj[e[1]] = e[0]);
+  return newObj;
+}
 
 
 /*
@@ -775,11 +716,14 @@ Example:
 If you pass {"contract": "foo"}, "Fred" it should return {"contract-signed": "foo - Fred"}
 */
 
-
-
-
-
-
+function addSignature(name, obj) {
+  if (!Object.entries(name).length) {
+    return {};
+  }
+  const newObj = {};
+  Object.entries(obj).map(e => newObj[e[0] + '-signed'] = e[1] + ` - ${name}`);
+  return newObj;
+}
 
 
 /*
@@ -794,11 +738,9 @@ Example:
 If you pass {name: "Will", age: 24} it should return ["name - will", "age - 24"]
 */
 
-
-
-
-
-
+function pairs(obj) {
+  return Object.entries(obj).map(e => `${e[0]} - ${e[1].toLowerCase()}`);
+}
 
 
 /*
@@ -813,11 +755,13 @@ Example:
 If you pass {a: 1, b: 2} it should return 3
 */
 
-
-
-
-
-
+function sumValues(obj) {
+  let sum = 0;
+  for (let key in obj) {
+    sum += obj[key];
+  }
+  return sum;
+}
 
 
 /*
@@ -832,17 +776,17 @@ Example:
 If you pass {1999: 4036, 2000: 7654} it should return '2000'
 */
 
-
-
-
-
-
-
-
-
-
-
-
+function biggestProperty(obj) {
+  let largest = 0;
+  let val;
+  for (let key in obj) {
+    if (obj[key] > largest) {
+      largest = obj[key];
+      val = key;
+    }
+  }
+  return val;
+}
 
 
 /*
@@ -857,13 +801,12 @@ Example:
 If you pass {1999: 4036, 2000: 7654} and 4036, it should return '1999'
 */
 
-
-
-
-
-
-
-
+function keyForValue(obj, val) {
+  for (let key in obj) {
+    if (obj[key] === val) return key;
+  }
+  return undefined;
+}
 
 
 /*
@@ -878,12 +821,9 @@ Example:
 If you pass {1999: 4036, 2000: 7654} and 4036, it should return true
 */
 
-
-
-
-
-
-
-
-
-//
+function containsValue(obj, val) {
+  for (let key in obj) {
+    if (obj[key] === val) return true;
+  }
+  return false;
+}
